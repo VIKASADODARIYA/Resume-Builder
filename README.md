@@ -6,7 +6,7 @@ Got it! Here's a README.md file tailored for a React-based Resume Builder projec
 
 Resume Builder is a web application built with React that enables users to create and customize their resumes quickly and efficiently.
 
-![Home](Images/Home.png)
+[Home](Images/Home.png)
 
 ## Features
 
