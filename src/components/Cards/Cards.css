@@ -1,0 +1,147 @@
+.card {
+    padding: 20px 20px 15px 20px;
+}
+
+.custom-card {
+    width: 22rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.custom-card:hover {
+    transform: scale(1.05);
+}
+
+.custom-card figure img {
+    width: 210px;
+    height: 297px;
+    padding-top: 20px;
+    margin-bottom: -30px;
+}
+
+.card-name {
+    /* display: flex; */
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-body .card-title {
+    /* display: flex; */
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: normal;
+    margin-bottom: 0.5rem;
+}
+
+.badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.card-actions p {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.price-badge {
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.book-action {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 50px;
+}
+
+.read-now-button {
+    width: 80px;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: 2px solid #000000;
+    border-radius: 20px;
+    transition: background-color 0.2s, color 0.2s;
+    margin-right: 10px;
+}
+
+.buy-now-button {
+    width: 80px;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: 2px solid #000000;
+    border-radius: 20px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.card-body {
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+.card-body p {
+    margin-top: 0;
+}
+
+.dark-mode .custom-card {
+    width: 22rem;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.dark-mode .card-body {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.dark-mode .read-now-button {
+    border: 2px solid #ffffff;
+}
+
+.dark-mode .buy-now-button {
+    border: 2px solid #ffffff;
+}
+
+@media (max-width: 768px) {
+    .custom-card {
+        width: 100%;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+.star-icon {
+    position: absolute;
+    top: 10px; /* Adjust top position as needed */
+    right: 10px; /* Adjust right position as needed */
+    font-size: 1.5rem; /* Adjust icon size as needed */
+    color: gold; /* Adjust icon color */
+  }
+  
+  .star-icon:hover {
+    cursor: pointer;
+  }
+
+  .dark-mode .star-icon {
+    color: yellow; /* Adjust dark mode icon color */
+  }
