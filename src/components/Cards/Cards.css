@@ -13,29 +13,58 @@
     align-items: center;
     text-align: center;
     margin-bottom: 1rem;
+    overflow: hidden;
 }
 
 .custom-card:hover {
     transform: scale(1.05);
 }
 
+.custom-card figure {
+    width: 100%;
+    margin: 0;
+    position: relative;
+}
+
 .custom-card figure img {
-    width: 210px;
-    height: 297px;
-    padding-top: 20px;
-    margin-bottom: -30px;
+    width: 353px;
+    height: 499px;
+    border-radius: 20px 20px 0 0;
+}
+
+.card-details {
+    display: flex;
+    align-items: center;
+}
+
+.card-body {
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+.card-body p {
+    text-align: left;
+    margin-top: 0;
+    margin-left: 1rem;
 }
 
 .card-name {
-    /* display: flex; */
     justify-content: space-between;
     align-items: center;
+    text-align: left;
     font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 10px;
+}
+
+.card-category {
+    background: #EC4899;
+    color: #ffff;
+    padding: 1px 10px;
+    border-radius: 10px;
 }
 
 .card-body .card-title {
-    /* display: flex; */
     justify-content: space-between;
     align-items: center;
     font-size: 1rem;
@@ -63,34 +92,94 @@
     display: flex;
     justify-content: space-between;
     padding: 10px 50px;
+    gap: 20px;
 }
 
-.read-now-button {
-    width: 80px;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    border: 2px solid #000000;
-    border-radius: 20px;
-    transition: background-color 0.2s, color 0.2s;
-    margin-right: 10px;
-}
-
+.read-now-button,
 .buy-now-button {
     width: 80px;
     cursor: pointer;
-    padding: 0.5rem 1rem;
+    padding: 5px 10px;
     border: 2px solid #000000;
     border-radius: 20px;
     transition: background-color 0.2s, color 0.2s;
 }
 
-.card-body {
-    margin-bottom: 10px;
-    color: #000000;
+.buy-now-button:hover {
+    background: #EC4899;
+    border: #EC4899;
+    color: #ffff;
 }
 
-.card-body p {
-    margin-top: 0;
+.star-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    color: gold;
+    display: none;
+}
+
+.custom-card:hover .star-icon {
+    display: block;
+}
+
+.star-icon:hover {
+    cursor: pointer;
+}
+
+.dark-mode .star-icon {
+    color: yellow;
+}
+
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    color: #333;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.prev {
+    left: -25px;
+}
+
+.next {
+    right: -35px;
+}
+
+.prev,
+.next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.prev:hover,
+.next:hover {
+    color: #555;
+}
+
+.custom-arrow {
+    border-radius: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.custom-arrow i {
+    font-size: 1.5rem;
+}
+
+.dark-mode .prev,
+.dark-mode .next {
+    color: #ffff;
 }
 
 .dark-mode .custom-card {
@@ -120,28 +209,88 @@
 }
 
 @media (max-width: 768px) {
-    .custom-card {
-        width: 100%;
-    }
-
     .card {
         width: 100%;
         margin-bottom: 20px;
+        padding: 0;
+    }
+
+    .card-body {
+        text-align: center;
+    }
+
+    .custom-card {
+        width: 100%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+        transition: transform 0.2s;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 1rem;
+        overflow: hidden;
+    }
+
+    .dark-mode .custom-card {
+        width: 100%;
+    }
+
+
+    .custom-card figure {
+        width: 100%;
+        margin: 0;
+        position: relative;
+    }
+
+    .custom-card figure img {
+        width: 100%;
+        height: 479px;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .card-details {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .card-name {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .card-body .card-title {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .card-body .card-category {
+        text-align: center;
+        margin: 0;
+    }
+
+    .book-action {
+        gap: 10px;
+        width: 230px;
+    }
+
+    .read-now-button,
+    .buy-now-button {
+        width: 100%;
+        align-items: center;
+    }
+
+    .custom-arrow {
+        text-align: center;
+    }
+
+    .prev {
+        left: -20px;
+    }
+
+    .next {
+        right: -20px;
     }
 }
-
-.star-icon {
-    position: absolute;
-    top: 10px; /* Adjust top position as needed */
-    right: 10px; /* Adjust right position as needed */
-    font-size: 1.5rem; /* Adjust icon size as needed */
-    color: gold; /* Adjust icon color */
-  }
-  
-  .star-icon:hover {
-    cursor: pointer;
-  }
-
-  .dark-mode .star-icon {
-    color: yellow; /* Adjust dark mode icon color */
-  }

@@ -56,10 +56,6 @@
     width: 100%;
 }
 
-.navbar-link:active {
-    text-decoration: overline;
-}
-
 .search-label {
     display: flex;
     align-items: center;
@@ -67,20 +63,6 @@
     border: 1px solid #c3c3c3;
     padding: 0.5rem;
     height: 25px;
-}
-
-.search-box {
-    border: none;
-    outline: none;
-    background: none;
-    padding: 0.5rem;
-    font-size: 1rem;
-    font-family: "Signika Negative", sans-serif;
-}
-
-.search-box::placeholder {
-    color: #999;
-    font-family: "Signika Negative", sans-serif;
 }
 
 .bi-search {
@@ -144,14 +126,15 @@
     text-decoration: none;
 }
 
-.profile-img{
+.profile-img {
     padding-left: 10px;
     padding-top: 3px;
     align-items: center;
 }
 
-.profile-img img{
-    height: 45px;
+.profile-img img {
+    height: 40px;
+    border-radius: 50%;
 }
 
 /* Dark mode styles */

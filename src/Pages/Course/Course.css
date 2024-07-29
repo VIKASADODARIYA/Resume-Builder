@@ -1,8 +1,3 @@
-/* .main {
-    padding: 70px 70px 15px 70px;
-    margin-top: 50px;
-} */
-
 .sub-container {
     justify-content: center;
     align-items: center;
@@ -11,6 +6,9 @@
 .heading {
     font-size: 2.5rem;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .heading span {
@@ -48,12 +46,77 @@
     justify-content: center;
 }
 
-@media (max-width: 768px) {
-    .main {
-        /* padding: 70px 70px 15px 70px; */
-        margin-top: 50px;
-    }
+.book-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 
+.search-filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.search-filter-container i {
+    font-size: 2rem;
+    margin-right: 10px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    margin-left: 1rem;
+}
+
+.add-book-btn {
+    margin-right: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.search-box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    background: none;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-family: "Signika Negative", sans-serif;
+}
+
+.search-box::placeholder {
+    color: #999;
+    font-family: "Signika Negative", sans-serif;
+}
+
+.filter-box {
+    margin-left: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    background: none;
+    font-family: "Signika Negative", sans-serif;
+}
+
+.pagination {
+    text-align: center;
+}
+
+.prev-btn,
+.next-btn {
+    margin: 10px;
+    font-size: 1.3rem;
+    background-color: transparent;
+    outline: none;
+}
+
+@media (max-width: 768px) {
     .heading {
         font-size: 2.5rem;
     }
@@ -69,5 +132,21 @@
 
     .back-btn {
         font-size: 1.5rem;
+    }
+
+    .search-filter-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-box, .filter-box {
+        margin: 0;
+        width: 100%;
+        margin-bottom: 0.5rem;
     }
 }

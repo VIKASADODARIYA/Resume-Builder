@@ -18,6 +18,28 @@ function Cards({ item }) {
     setIsFilled(!isFilled); // Toggle the state
   };
 
+  const handleDownloadClick = async () => {
+    try {
+      const response = await fetch(item.path); // Replace with the actual path to your file
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `${item.name}${getFileExtension(item.path)}`); // Set download attribute with file extension
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(url); // Clean up the URL object after download
+    } catch (error) {
+      console.error("Error downloading file:", error);
+    }
+  };
+
+  const getFileExtension = (filename) => {
+    return filename.split('.').pop(); // Extract file extension from the path
+  };
 
   return (
     <div className={`card ${isDarkMode ? "dark-mode" : ""}`}>
@@ -27,18 +49,23 @@ function Cards({ item }) {
           <i className={`bi ${isFilled ? 'bi-star-fill' : 'bi-star'} star-icon`} onClick={handleClick}></i>
         </figure>
         <div className="card-body">
-          <h2 className="card-name">
-            {item.name}
-          </h2>
+          <div className="card-details">
+            <h2 className="card-name">
+              {item.name}
+            </h2>
+            <div className="card-category">
+              {item.category}
+            </div>
+          </div>
           <p className="card-title">{item.title}</p>
           <div className="card-actions">
-            <div className="price-badge">${item.price}</div>
           </div>
+          {/* <div className="price-badge">${item.price}</div> */}
           <div className="book-action">
             <div className="read-now-button" onClick={handleViewClick}>
-              Read Now
+              &#8377; {item.price}
             </div>
-            <div className="buy-now-button">
+            <div className="buy-now-button" onClick={handleDownloadClick}>
               Buy Now
             </div>
           </div>

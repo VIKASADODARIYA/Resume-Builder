@@ -1,61 +1,119 @@
-import React, { useEffect, useState } from 'react';
-import Footer from '../../components/Footer/Footer';
+import React, { useState, useEffect } from 'react';
 import { useDarkMode } from '../../DarkModeContext';
-import { useAuth } from '../../context/AuthProvider'; // Import useAuth hook
-import './Profile.css'; // Your custom CSS file for styling
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthProvider';
+import './Profile.css';
+import Footer from '../../components/Footer/Footer';
+import { useNavigate, Link } from 'react-router-dom';
+import ProfileImg from '../../assets/profile.png';
+import ForgotPassword from '../../components/Forgot-Password/ForgotPassword';
+import EditDetails from '../../components/EditUserDetails/EditUserDetails';
+import toast from 'react-hot-toast';
 
 const Profile = () => {
-    const { isDarkMode } = useDarkMode();
-    const [authUser] = useAuth(); // Access authUser from context
-    const [userData, setUserData] = useState(null); // State to hold user data
+    const { isDarkMode } = useDarkMode(); // Ensure this hook is correctly implemented
+    const [authUser, setAuthUser] = useAuth();
+    const [userData, setUserData] = useState(null);
+    const [isForgotPasswordOpen, setIsForgotPasswordOpen] = useState(false);
+    const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         if (!authUser) {
-            // If user is not logged in, redirect to login page
-            navigate('/'); // or any other route you prefer
+            navigate('/');
         } else {
-            fetchUserData(authUser._id); // Fetch user data when authUser changes
+            fetchUserData(authUser._id);
         }
     }, [authUser]);
 
     const fetchUserData = async (userId) => {
         try {
-            const response = await fetch(`http://localhost:5002/user/userdetails/${userId}`); // Endpoint with userId parameter
+            const response = await fetch(`http://localhost:5002/user/userdetails/${userId}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch user data');
             }
             const data = await response.json();
-            setUserData(data.user); // Assuming 'user' object in response contains user data
+            setUserData(data.user);
         } catch (error) {
             console.error('Error fetching user data:', error.message);
-            // Handle error (e.g., show error message)
         }
     };
 
+    const deleteUser = async () => {
+        try {
+            const response = await fetch(`http://localhost:5002/user/delete-user/${authUser._id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+    
+            if (!response.ok) {
+                const errorMessage = await response.text();
+                throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorMessage}`);
+            }
+    
+            toast.success('Account deleted successfully');
+            setAuthUser(null); // Clear authUser after successful deletion
+            navigate('/'); // Redirect to the home page after successful deletion
+        } catch (error) {
+            console.error('Error deleting user:', error.message);
+            toast.error('Failed to delete account. Please try again.');
+        }
+    };
+    
+
     if (!authUser) {
-        return null; // Render nothing if user is not authenticated and redirected
+        return null;
     }
+
+    const openForgotPasswordModal = () => {
+        setIsForgotPasswordOpen(true);
+    };
+
+    const closeForgotPasswordModal = () => {
+        setIsForgotPasswordOpen(false);
+    };
+
+    const openEditDetailsModal = () => {
+        setIsEditDetailsOpen(true);
+    };
+
+    const closeEditDetailsModal = () => {
+        setIsEditDetailsOpen(false);
+        fetchUserData(authUser._id);
+    };
 
     return (
         <>
-            <div className={`main ${isDarkMode ? "dark-mode" : ""}`}>
+            <div className={`main ${isDarkMode ? 'dark-mode' : ''}`}>
                 <div className="profile-container">
                     <h1>User Profile</h1>
                     {userData ? (
-                        <div className="profile-details">
-                            <div className="profile-image">
-                                <img src={userData.profile} alt="Profile" />
+                        <>
+                            <div className="profile-details">
+                                <div className="profile-image">
+                                    <img src={userData.profile || ProfileImg} alt="Profile" />
+                                </div>
+                                <div className="user-info">
+                                    <ul>
+                                        <li><strong>Full Name:</strong> {userData.fullname}</li>
+                                        <li><strong>Phone:</strong> {userData.phone}</li>
+                                        <li><strong>Email:</strong> {userData.email}</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div className="user-info">
-                                <ul>
-                                    <li><strong>Full Name:</strong> {userData.fullname}</li>
-                                    <li><strong>Phone:</strong> {userData.phone}</li>
-                                    <li><strong>Email:</strong> {userData.email}</li>
-                                </ul>
+                            <div className="update-profile">
+                                <div className="forgot-pass">
+                                    <Link onClick={openForgotPasswordModal}>Forgot Password</Link>
+                                </div>
+                                <div className="edit-details">
+                                    <Link onClick={openEditDetailsModal}>Edit Details</Link>
+                                </div>
+                                <div className="delete-account">
+                                    <Link onClick={deleteUser}>Delete Account</Link>
+                                </div>
                             </div>
-                        </div>
+                        </>
                     ) : (
                         <p>Loading user data...</p>
                     )}
@@ -63,6 +121,12 @@ const Profile = () => {
                 <hr />
                 <Footer />
             </div>
+            {isForgotPasswordOpen && (
+                <ForgotPassword onCloseModal={closeForgotPasswordModal} />
+            )}
+            {isEditDetailsOpen && (
+                <EditDetails onCloseModal={closeEditDetailsModal} />
+            )}
         </>
     );
 };

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^5.16.4",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -44,15 +47,6 @@
   },
   "description": "bookStore frontend",
   "main": "index.js",
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/VIKASADODARIYA/bookStore.git"
-  },
   "author": "Vikas Adodariya",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/VIKASADODARIYA/bookStore/issues"
-  },
-  "homepage": "https://github.com/VIKASADODARIYA/bookStore#readme"
+  "license": "ISC"
 }

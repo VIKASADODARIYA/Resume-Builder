@@ -23,10 +23,18 @@ export default function Footer() {
           </a>
         </div>
         <div className="footer">
-          <i className="bi bi-envelope-at-fill"></i>
-          <i className="bi bi-linkedin"></i>
-          <i className="bi bi-youtube"></i>
-          <i className="bi bi-facebook"></i>
+          <a href="mailto:deadkiller0422@gmail.com">
+            <i className="bi bi-envelope-at-fill"></i>
+          </a>
+          <a href="https://github.com/VIKASADODARIYA" target="_blank" rel="noreferrer">
+            <i className="bi bi-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/vikas-adodariya-22b719242" target="_blank" rel="noreferrer">
+            <i className="bi bi-linkedin"></i>
+          </a>
+          <a href="https://www.instagram.com/v_i_k_a_s_patel.03" target="_blank" rel="noreferrer">
+            <i className="bi bi-instagram"></i>
+          </a>
         </div>
         <p>
           Copyright &copy; 2024 - All rights reserved by bookStore.com

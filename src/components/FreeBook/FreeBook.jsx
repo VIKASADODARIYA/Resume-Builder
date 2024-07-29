@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import axios from "axios";
 import '../Cards/Cards.css'
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 function Freebook() {
     const [book, setBook] = useState([]);
@@ -25,6 +22,19 @@ function Freebook() {
         getBook();
     }, []);
 
+    const CustomPrevArrow = ({ onClick }) => (
+        <div className="prev custom-arrow" onClick={onClick}>
+            <i className="bi bi-caret-left-fill"></i>
+        </div>
+    );
+    
+    const CustomNextArrow = ({ onClick }) => (
+        <div className="next custom-arrow" onClick={onClick}>
+            <i className="bi bi-caret-right-fill"></i>
+        </div>
+    );
+    
+
     var settings = {
         dots: true,
         infinite: true,
@@ -36,6 +46,8 @@ function Freebook() {
         centerMode: true,
         centerPadding: '3rem',
         initialSlide: 0,
+        prevArrow: <CustomPrevArrow />,
+        nextArrow: <CustomNextArrow />,
         responsive: [
             {
                 breakpoint: 1024,
@@ -57,8 +69,11 @@ function Freebook() {
             {
                 breakpoint: 480,
                 settings: {
+                    infinite: true,
+                    dots: true,
                     slidesToShow: 1,
                     slidesToScroll: 1,
+                    centerPadding: '0rem',
                 },
             },
         ],
@@ -72,29 +87,41 @@ function Freebook() {
                 corporis nulla non suscipit, iure neque earum?
             </p>
             <hr />
-            <div className={`card`}>
-                <Link to='/course' className="custom-link">
-                    <Slider {...settings}>
-                        {book.map((item) => (
-                            <>
-                                <div className="custom-card">
-                                    <figure>
-                                        <img src={item.image} alt="Images" />
-                                    </figure>
-                                    <div className="card-body">
+            <div className="card">
+                <Slider {...settings}>
+                    {book.map((item) => (
+                        <>
+                            <div className="custom-card">
+                                <figure>
+                                    <img src={item.image} alt="Images" />
+                                    <i className="star-icon"></i>
+                                </figure>
+                                <div className="card-body">
+                                    <div className="card-details">
                                         <h2 className="card-name">
                                             {item.name}
                                         </h2>
-                                        <p className="card-title">{item.title}</p>
-                                        <div className="card-actions">
-                                            <p className="">${item.price}</p>
+                                        <div className="card-category">
+                                            {item.category}
+                                        </div>
+                                    </div>
+                                    <p className="card-title">{item.title}</p>
+                                    <div className="card-actions">
+                                    </div>
+                                    {/* <div className="price-badge">${item.price}</div> */}
+                                    <div className="book-action">
+                                        <div className="read-now-button">
+                                            &#8377; {item.price}
+                                        </div>
+                                        <div className="buy-now-button">
+                                            Buy Now
                                         </div>
                                     </div>
                                 </div>
-                            </>
-                        ))}
-                    </Slider>
-                </Link>
+                            </div>
+                        </>
+                    ))}
+                </Slider>
             </div>
         </>
     );

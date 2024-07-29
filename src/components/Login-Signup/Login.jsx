@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDarkMode } from "../../DarkModeContext";
 import "./Login.css";
 import Signup from "../Login-Signup/Signup";
-import { toast } from "react-toastify";
+import toast  from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthProvider";
 

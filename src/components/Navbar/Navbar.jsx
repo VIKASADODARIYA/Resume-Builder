@@ -18,7 +18,6 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [scrolled, setScrolled] = useState(false);
 
-
   const handleOpenModal = () => {
     setIsModalOpen(true); // Open the modal
   };
@@ -99,7 +98,7 @@ const Navbar = () => {
             <Logout />
           ) : (
             <div className="login-btn" onClick={handleOpenModal}>
-              <a href="#/">Login</a>
+              <a href="#">Login</a>
             </div>
           )}
         </>
@@ -117,9 +116,14 @@ const Navbar = () => {
         <a href="/about" className="navbar-link">
           About
         </a>
+        {authUser && authUser.role === 'admin' && (
+          <a href="/users" className="navbar-link">
+            Users
+          </a>
+        )}
         {!isMobile && (
           <>
-            <div className="search-label">
+            {/* <div className="search-label">
               <form action="">
                 <input
                   type="search"
@@ -130,7 +134,7 @@ const Navbar = () => {
                 />
               </form>
               <i className="bi bi-search" onClick={handleSearchSubmit}></i>
-            </div>
+            </div> */}
             <div className="icon-btn" onClick={toggleDarkMode}>
               <i className={`bi ${isDarkMode ? "bi-sun" : "bi-moon-stars"}`}></i>
             </div>
@@ -138,12 +142,12 @@ const Navbar = () => {
               <>
                 <Logout />
                 <div className="profile-img">
-                  <Link to='/profile'><img src={Profile} alt="Profile" /></Link>
+                  <Link to='/profile'><img src={authUser.profile || Profile} alt="Profile" /></Link>
                 </div>
               </>
             ) : (
               <div className="login-btn" onClick={handleOpenModal}>
-                <a href="#/">Login</a>
+                <a href="#">Login</a>
               </div>
             )}
           </>

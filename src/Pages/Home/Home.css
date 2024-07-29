@@ -14,7 +14,7 @@
     box-sizing: border-box;
 }
 
-.sub-1 div {
+.sub-1 .text {
     font-size: 3rem;
     font-weight: bold;
 }
@@ -71,7 +71,9 @@ input[type="email"]::placeholder {
 
 @media (max-width: 768px) {
     .main {
-        text-align: center;
+        /* text-align: center; */
+        margin-top: 50px;
+        padding: 70px 30px 15px 30px;
     }
 
     .container {
@@ -88,15 +90,6 @@ input[type="email"]::placeholder {
         height: auto;
         min-height: unset;
         margin-top: 20px;
-    }
-
-    .sub-1 div {
-        font-size: 2rem;
-        text-align: center;
-    }
-
-    .sub-1 span {
-        font-size: 2rem;
     }
 
     .sub-1 p {

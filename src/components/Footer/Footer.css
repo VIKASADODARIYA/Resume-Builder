@@ -18,6 +18,10 @@ footer {
     cursor: pointer;
 }
 
+.footer a {
+    color: #000000;
+}
+
 .footer .navbar-link {
     display: inline-block; 
 }

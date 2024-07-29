@@ -9,8 +9,10 @@ import About from "./Pages/About/About";
 // import Login from "./components/Login-Signup/Login";
 // import Signup from "./components/Login-Signup/Signup";
 import Profile from './Pages/Profile/Profile';
+import UserDetails from "./components/admin-side/user-details/UserDetails";
 import { DarkModeProvider } from "./DarkModeContext";
 import AuthProvider from "./context/AuthProvider";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -27,7 +29,9 @@ function App() {
               {/* <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} /> */}
               <Route path="/profile" element={<Profile />} />
+              <Route path="/users" element={<UserDetails />} />
             </Routes>
+            <Toaster />
           </div>
         </BrowserRouter>
       </DarkModeProvider>

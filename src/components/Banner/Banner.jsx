@@ -5,13 +5,14 @@ import { useDarkMode } from "../../DarkModeContext";
 
 export default function Home() {
     const { isDarkMode } = useDarkMode();
+    
 
     return (
         <div className={`container ${isDarkMode ? "dark-mode" : ""}`}>
             <div className="container-left">
                 <div className="sub-container">
                     <div className="sub-1">
-                        <div>
+                        <div className="text">
                             Hello, welcome here to learn something{" "}
                             <span>new everyday!!!</span>
                         </div>
